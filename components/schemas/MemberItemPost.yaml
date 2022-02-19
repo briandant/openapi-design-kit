@@ -1,0 +1,74 @@
+required:
+- first_name
+- last_name
+- address
+- zip
+- state
+- city
+- country
+- date_of_birth
+- gender
+- effective_date
+- expiration_date
+type: object
+properties:
+  first_name:
+    type: string
+    example: Danny
+  middle_name:
+    type: string
+    example: Marie
+  last_name:
+    type: string
+    example: Dant
+  status:
+    type: string
+    example: A
+  prefix:
+    type: string
+    example: Mr.
+  suffix:
+    type: string
+    example: Jr.
+  date_of_birth:
+    type: string
+    format: date-time
+    example: 10-03-1981
+    description: DOB in ISO-8061 xx or one of the three most common formats.
+  gender:
+    type: string
+    example: M
+    description: "One of 'M', 'F', or 'U'."
+  cell_phone:
+    type: string
+    example: 555-867-5309
+  work_phone:
+    type: string
+    example: 555-275-8640
+  home_phone:
+    type: string
+    example: 555-681-7864
+  home_email:
+    type: string
+    example: fruitypebbles@example.com
+  work_email:
+    type: string
+    example: luckycharms@example.com
+  effective_date:
+    type: string
+    format: date-time
+    example: 2016-08-29T09:12:33.001Z
+    description: Date on which the member started the plan.
+  expiration_date:
+    type: string
+    format: date-time
+    example: 2016-08-29T09:12:33.001Z
+    description: Date on which the member's plan is no longer effective.
+  relationship:
+    type: string
+    example: ???
+  employment_status:
+    type: string
+    example: ???
+  address:
+    $ref: ./Address.yaml

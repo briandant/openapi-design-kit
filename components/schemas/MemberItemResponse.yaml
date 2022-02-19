@@ -1,0 +1,31 @@
+required:
+- fname
+- lname
+- releaseDate
+type: object
+properties:
+  mcar_mem_idx:
+    type: string
+    example: 273
+  releaseDate:
+    type: string
+    format: date-time
+    example: 2016-08-29T09:12:33.001Z
+  prefix:
+    type: string
+    example: Mr.
+  suffix:
+    type: string
+    example: Jr.
+  first_name:
+    type: string
+    example: Danny
+  middle_name:
+    type: string
+    example: Marie
+  last_name:
+    type: string
+    example: Dant
+  address:
+    type: string
+    example: 1600 Pennsylvania Avenue

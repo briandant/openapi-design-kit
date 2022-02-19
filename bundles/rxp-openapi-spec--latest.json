@@ -1,0 +1,331 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "version": "1.0.0",
+    "title": "RxPreferred API",
+    "termsOfService": "https://example.com/terms/",
+    "contact": {
+      "email": "brian.dant@rxpreferred.com",
+      "url": "http://example.com/contact"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "x-logo": {
+      "url": "https://redocly.github.io/openapi-template/logo.png"
+    },
+    "description": "This is an **example** API to demonstrate features of OpenAPI specification\n# Introduction\nThis API definition is intended to to be a good starting point for describing your API in\n[OpenAPI/Swagger format](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md).\nIt also demonstrates features of [create-openapi-repo](https://github.com/Redocly/create-openapi-repo) tool and\n[Redoc](https://github.com/Redocly/Redoc) documentation engine. So beyond the standard OpenAPI syntax we use a few\n[vendor extensions](https://github.com/Redocly/Redoc/blob/master/docs/redoc-vendor-extensions.md).\n\n# OpenAPI Specification\nThe goal of The OpenAPI Specification is to define a standard, language-agnostic interface to REST APIs which\nallows both humans and computers to discover and understand the capabilities of the service without access to source\ncode, documentation, or through network traffic inspection. When properly defined via OpenAPI, a consumer can\nunderstand and interact with the remote service with a minimal amount of implementation logic. Similar to what\ninterfaces have done for lower-level programming, OpenAPI removes the guesswork in calling the service.\n"
+  },
+  "externalDocs": {
+    "description": "Find out how to create a GitHub repo for your OpenAPI definition.",
+    "url": "https://github.com/Rebilly/generator-openapi-repo"
+  },
+  "tags": [
+    {
+      "name": "Echo",
+      "description": "Example echo operations"
+    },
+    {
+      "name": "User",
+      "description": "Operations about user"
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://example.com/api/v1"
+    },
+    {
+      "url": "https://example.com/api/v1"
+    }
+  ],
+  "paths": {
+    "/member": {
+      "get": {
+        "tags": [
+          "developers"
+        ],
+        "summary": "List all members.",
+        "description": "By passing in the appropriate options, you can search for\navailable members in the system.\n",
+        "operationId": "searchMembers",
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "Pass an optional search string for looking up members.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "Number of records to skip for pagination.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of records to return.",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "maximum": 50,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member list containing results matching search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MemberItemResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad input parameter."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "developers"
+        ],
+        "summary": "Adds a member.",
+        "description": "Adds a member to the system.",
+        "operationId": "addMember",
+        "requestBody": {
+          "description": "Member to add.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MemberItemPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Member created successfully."
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          },
+          "409": {
+            "description": "A member with this info exists."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "main_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:users": "read users info",
+              "write:users": "modify or remove users"
+            }
+          }
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "api_key"
+      },
+      "basic_auth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "schemas": {
+      "MemberItemResponse": {
+        "required": [
+          "fname",
+          "lname",
+          "releaseDate"
+        ],
+        "type": "object",
+        "properties": {
+          "mcar_mem_idx": {
+            "type": "string",
+            "example": 273
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2016-08-29T09:12:33.001Z"
+          },
+          "prefix": {
+            "type": "string",
+            "example": "Mr."
+          },
+          "suffix": {
+            "type": "string",
+            "example": "Jr."
+          },
+          "first_name": {
+            "type": "string",
+            "example": "Danny"
+          },
+          "middle_name": {
+            "type": "string",
+            "example": "Marie"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Dant"
+          },
+          "address": {
+            "type": "string",
+            "example": "1600 Pennsylvania Avenue"
+          }
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string",
+            "example": "1600 Pennsylvania Avenue"
+          },
+          "zip": {
+            "type": "string",
+            "example": 37221
+          },
+          "state": {
+            "type": "string",
+            "example": "FL"
+          },
+          "city": {
+            "type": "string",
+            "example": "Vancouver"
+          },
+          "country": {
+            "type": "string",
+            "example": "Uganda"
+          }
+        }
+      },
+      "MemberItemPost": {
+        "required": [
+          "first_name",
+          "last_name",
+          "address",
+          "zip",
+          "state",
+          "city",
+          "country",
+          "date_of_birth",
+          "gender",
+          "effective_date",
+          "expiration_date"
+        ],
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "Danny"
+          },
+          "middle_name": {
+            "type": "string",
+            "example": "Marie"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Dant"
+          },
+          "status": {
+            "type": "string",
+            "example": "A"
+          },
+          "prefix": {
+            "type": "string",
+            "example": "Mr."
+          },
+          "suffix": {
+            "type": "string",
+            "example": "Jr."
+          },
+          "date_of_birth": {
+            "type": "string",
+            "format": "date-time",
+            "example": "10-03-1981",
+            "description": "DOB in ISO-8061 xx or one of the three most common formats."
+          },
+          "gender": {
+            "type": "string",
+            "example": "M"
+          },
+          "cell_phone": {
+            "type": "string",
+            "example": "555-867-5309"
+          },
+          "work_phone": {
+            "type": "string",
+            "example": "555-275-8640"
+          },
+          "home_phone": {
+            "type": "string",
+            "example": "555-681-7864"
+          },
+          "home_email": {
+            "type": "string",
+            "example": "fruitypebbles@example.com"
+          },
+          "work_email": {
+            "type": "string",
+            "example": "luckycharms@example.com"
+          },
+          "effective_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2016-08-29T09:12:33.001Z",
+            "description": "Date on which the member started the plan."
+          },
+          "expiration_date": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2016-08-29T09:12:33.001Z",
+            "description": "Date on which the member's plan is no longer effective."
+          },
+          "relationship": {
+            "type": "string",
+            "example": "???"
+          },
+          "employment_status": {
+            "type": "string",
+            "example": "???"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          }
+        }
+      }
+    }
+  }
+}

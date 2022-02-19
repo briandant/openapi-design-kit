@@ -1,0 +1,20 @@
+type: object
+properties:
+  street:
+    type: string
+    example: 1600 Pennsylvania Avenue
+  street2:
+    type: string
+    example: c/o Donald Trump
+  zip:
+    type: string
+    example: 37221
+  state:
+    type: string
+    example: FL
+  city:
+    type: string
+    example: Vancouver
+  country:
+    type: string
+    example: Uganda
