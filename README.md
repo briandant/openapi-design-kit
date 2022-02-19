@@ -47,3 +47,5 @@ This kit is built on:
 
 - [swagger-ui-watcher](https://www.npmjs.com/package/swagger-ui-watcher
 - [Redocly](https://redoc.ly/) 
+- [Redoc](https://github.com/Redocly/Redoc)
+- [create-openapi-repo](https://github.com/Redocly/create-openapi-repo)
